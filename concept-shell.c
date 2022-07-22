@@ -51,7 +51,11 @@ int command(char *cmd)
 	if (my_pid == 0)
 	{
 		/* child */
-		execve(argv[0], argv, NULL);
+		if (execve(argv[0], argv, NULL) == -1)
+		{
+			perror("Error: invalid command");
+			exit(69);
+		}
 	}
 	else
 	{

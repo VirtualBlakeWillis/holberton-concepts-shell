@@ -9,4 +9,13 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
+#include <sys/stat.h>
+
+/* function prototypes */
+int command(char *cmd);
+int count_args(char *str);
+void tokenize_string(char *buff);
+char *prep_string(char *cmd);
+
+
 #endif
