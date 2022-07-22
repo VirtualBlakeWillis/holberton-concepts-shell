@@ -12,7 +12,7 @@ char *prep_string(char *cmd);
 int main(void)
 {
 	size_t buffsize;
-	char *buff, cmd;
+	char *buff, *cmd;
 	int i = 0, num_args, x;
 	while (1)
 	{
@@ -24,7 +24,8 @@ int main(void)
 			break;
 		else
 		{
-			command(buff);
+			cmd = prep_string(buff);
+			command(cmd);
 		}
 	}
 	return (EXIT_SUCCESS);
@@ -63,13 +64,14 @@ int command(char *cmd)
 char *prep_string(char *cmd)
 {
 	int i = 0;
-
-	while (cmd[i] == ' ')
-		i++;
+	while (*cmd == ' ')
+	{
+		cmd++;
+	}
 
 	for (; i < strlen(cmd); i++)
 	{
-		if (cmd[i] == ' ' || cmd[i] == '\0')
+		if (cmd[i] == ' ' || cmd[i] == '\n')
 		{
 			cmd[i] = '\0';
 			return (cmd);
